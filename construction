@@ -1,0 +1,6 @@
+group(id, name)
+  team(id, name, group_id, year)
+    post(id, title, content, team_id)
+      comments
+
+user

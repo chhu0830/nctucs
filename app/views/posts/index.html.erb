@@ -1,0 +1,11 @@
+<h1><%= @team.name %></h1>
+<h3><%= @team.year %><%= @group.name %></h3>
+<%= link_to "new", new_post_path(t: @team) %><br />
+<% @posts.each do |post| %>
+  <%= post.title %>
+  <%= link_to "show", post_path(post)%>
+  <%= link_to "delete", post, method: :delete, data: {confirm: "Are you sure?"} %>
+  <br />
+<% end %>
+
+<%= link_to "back", teams_path(g: @group, y: @team.year)%>
