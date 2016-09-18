@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :find_board, :only => [:new, :create]
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :find_post, only: [:show, :edit, :update, :destroy]
 
   def index
     @team = Team.find(params[:t])
@@ -12,16 +12,17 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(newpost_params)
+    @post = Post.new(post_params)
     if @post.save!
       redirect_to board_path(@board)
     else
-       render :new
+      render :new
     end
   end
 
   def show
     @board = @post.board_id
+    @comments = @post.comments
   end
 
   def destroy
@@ -35,11 +36,11 @@ class PostsController < ApplicationController
     @board = Board.find(params[:board_id])
   end
 
-  def set_post
+  def find_post
     @post = Post.find(params[:id])
   end
 
-  def newpost_params
+  def post_params
     params.permit(:title, :content, :board_id)
   end
 end

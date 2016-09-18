@@ -22,7 +22,7 @@ class CategoriesController < ApplicationController
 
   def destroy
     @category.destroy
-    redirect_to :action => :index
+    redirect_to :back
   end
 
   private

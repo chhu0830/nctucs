@@ -23,9 +23,8 @@ class BoardsController < ApplicationController
   end
 
   def destroy
-    @category_id = @board.category_id
     @board.destroy
-    redirect_to category_path(@category_id)
+    redirect_to :back
   end
 
   private

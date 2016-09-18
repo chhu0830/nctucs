@@ -1,3 +1,12 @@
 <h1><%= @post.title %></h1>
 <p><%= @post.content %></p>
+<h3>Comments</h3>
+<% @comments.each do |c| %>
+  <%= c.content %><br />
+<% end %>
+<%= form_tag comments_path do %>
+  <%= text_field_tag 'comment[content]' %>
+  <%= hidden_field_tag 'comment[post_id]', @post.id %>
+  <%= submit_tag 'send' %>
+<% end %>
 <%= link_to "back", board_path(@board) %>
