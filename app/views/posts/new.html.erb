@@ -1,6 +1,7 @@
-<%= form_tag posts_path do %>
+<h1><%= @board.name %></h1>
+<%= form_tag posts_path(board_id: @board) do %>
   <%= text_field_tag "title", "", placeholder: "title" %>
   <%= text_area_tag "content", "", placeholder: "content" %>
-  <%= hidden_field_tag "team_id", @team_id %>
+  <%= hidden_field_tag "board_id", @board %>
   <%= submit_tag "submit" %>
 <% end %>

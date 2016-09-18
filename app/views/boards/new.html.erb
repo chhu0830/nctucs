@@ -1,0 +1,5 @@
+<%= form_tag boards_path(category_id: @category) do %>
+  <%= hidden_field_tag 'board[category_id]', @category.id %>
+  <%= text_field_tag 'board[name]' %>
+  <%= submit_tag 'save' %>
+<% end %>

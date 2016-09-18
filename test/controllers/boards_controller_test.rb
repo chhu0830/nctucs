@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class BoardControllerTest < ActionDispatch::IntegrationTest
+class BoardsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

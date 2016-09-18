@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   get "main/index"
 
   resources :categories
+  resources :boards
+  resources :posts
 end
