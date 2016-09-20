@@ -1,4 +1,5 @@
 class BoardsController < ApplicationController
+  before_action :authenticate_user!
   before_filter :find_category, :only => [:new, :create]
   before_filter :find_board, :only => [:show, :destroy]
   def index
