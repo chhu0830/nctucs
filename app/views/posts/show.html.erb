@@ -2,11 +2,18 @@
 <p><%= @post.content %></p>
 <h3>Comments</h3>
 <% @comments.each do |c| %>
-  <%= c.content %><br />
+	<%= c.user.name %>:
+	<%= c.content %>
+	<% if c.user == current_user %>
+		<%= link_to "delete", c, method: :delete, data: {confirm: "Are you sure?"} %>
+	<% end %>
+	<br />
 <% end %>
 <%= form_tag comments_path do %>
+	<%= current_user.name %>:
   <%= text_field_tag 'comment[content]' %>
   <%= hidden_field_tag 'comment[post_id]', @post.id %>
+	<%= hidden_field_tag 'comment[user_id]', current_user.id %>
   <%= submit_tag 'send' %>
 <% end %>
 <%= link_to "back", board_path(@board) %>
