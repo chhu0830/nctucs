@@ -1,7 +1,8 @@
 class BoardsController < ApplicationController
   before_action :authenticate_user!
-  before_filter :find_category, :only => [:new, :create]
-  before_filter :find_board, :only => [:show, :destroy]
+  before_filter :find_category, :only=>[:new, :create]
+  before_filter :find_board, :only=>[:show, :destroy]
+	before_filter :viewable!, :only=>[:show]
   def index
     @boards = Board.all
   end
@@ -11,6 +12,12 @@ class BoardsController < ApplicationController
 
   def create
     @board = Board.new(board_params)
+		params[:board][:viewlist].each do |id, viewer|
+			if viewer
+				user = User.find_by(:account=>viewer)
+				if !user.nil? then @board.viewlists.new(:user_id=>user.id) end
+			end
+		end
     if @board.save!
       redirect_to category_url(@category)
     else
@@ -19,8 +26,6 @@ class BoardsController < ApplicationController
   end
 
   def show
-    @posts = @board.posts
-    @category = @board.category_id
   end
 
   def destroy
@@ -29,6 +34,16 @@ class BoardsController < ApplicationController
   end
 
   private
+
+	def viewable!
+		if @board.users.include?(current_user)
+			@posts = @board.posts
+			@category = @board.category_id
+			render :action=>:show
+		else
+			redirect_to :back
+		end
+	end
   
   def find_category
     @category = Category.find(params[:category_id])

@@ -1,5 +1,12 @@
 <%= form_tag boards_path(category_id: @category) do %>
   <%= hidden_field_tag 'board[category_id]', @category.id %>
+	<%= label_tag 'board[name]', '版名' %>
   <%= text_field_tag 'board[name]' %>
+	<br>
+	<%= label_tag 'board[viewlist]', '白名單' %>
+	<div id="viewlist">
+	</div>
+	<%= button_tag '新增', type: 'button', onclick: 'newViewer()' %>
+	<br>
   <%= submit_tag 'save' %>
 <% end %>

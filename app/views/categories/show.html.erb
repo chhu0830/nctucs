@@ -1,6 +1,9 @@
 <h1><%= @category.name %></h1>
 <% @boards.each do |b| %>
   <%= link_to b.name, board_path(b) %>
+	<% b.users.each do |viewer| %>
+		<%= viewer.name %>
+	<% end %>
   <%= link_to 'delete', b, method: :delete %>
   <br />
 <% end %>
