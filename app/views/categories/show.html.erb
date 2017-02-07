@@ -4,13 +4,13 @@
 	<% b.users.each do |viewer| %>
 		<%= viewer.name %>
 	<% end %>
-	<% if current_user.admin? %>
-		<%= link_to 'delete', b, method: :delete %>
+	<% if current_user == @category.user or current_user.admin? %>
+		<%= link_to 'delete', b, method: :delete, data: {confirm: "Are you sure?"}%>
 	<% end %>
   <br />
 <% end %>
 
-<% if current_user.admin? %>
+<% if current_user == @category.user or current_user.admin? %>
 	<%= link_to 'new', new_board_path(category_id: @category) %><br />
 <% end %>
 <%= link_to 'back', categories_path %>

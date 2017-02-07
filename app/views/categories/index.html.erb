@@ -1,7 +1,8 @@
 <% @categories.each do |c| %>
   <%= link_to c.name, category_path(c) %>
-	<% if current_user.admin? %>
-		<%= link_to 'delete', c, method: :delete %>
+	<%= c.user.try(:name) %>
+	<% if current_user == c.user or current_user.admin? %>
+		<%= link_to 'delete', c, method: :delete, data: {confirm: "Are you sure?"} %>
 	<% end %>
   <br />
 <% end %>
