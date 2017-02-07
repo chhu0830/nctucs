@@ -4,8 +4,8 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment = Comment.new(comment_params)
-    @comment.save
+		@comment = current_user.comments.new(comment_params)
+    @comment.save!
 
     redirect_to :back
   end
