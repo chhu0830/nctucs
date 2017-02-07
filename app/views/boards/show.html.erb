@@ -1,7 +1,8 @@
 <h1><%= @board.name %></h1>
 <% @posts.each do |p| %>
   <%= link_to p.title, post_path(p) %>
-	<% if current_user.admin? %>
+	<%= p.user.try(:name) %>
+	<% if current_user == p.user or current_user.admin? %>
 		<%= link_to 'delete', p, method: :delete %>
 	<% end %>
   <br />

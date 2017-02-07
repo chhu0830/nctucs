@@ -6,6 +6,7 @@ class User < ApplicationRecord
 	has_many :viewlists, :dependent=>:delete_all
 	has_many :boards, :through=>:viewlists
 	has_many :categories
+	has_many :posts, :dependent=>:destroy
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
