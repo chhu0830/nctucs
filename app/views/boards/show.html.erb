@@ -2,6 +2,7 @@
 <% @posts.each do |p| %>
   <%= link_to p.title, post_path(p) %>
 	<%= p.user.try(:name) %>
+	<%= p.updated_at %>
 	<% if current_user == p.user or current_user.admin? %>
 		<%= link_to 'delete', p, method: :delete %>
 	<% end %>
