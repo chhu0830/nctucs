@@ -36,7 +36,7 @@ class BoardsController < ApplicationController
   private
 
 	def viewable!
-		if @board.users.include?(current_user)
+		if @board.users.include?(current_user) or current_user.admin?
 			@posts = @board.posts
 			@category = @board.category_id
 			render :action=>:show

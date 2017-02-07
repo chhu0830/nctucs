@@ -4,9 +4,9 @@
   <%= text_field_tag 'board[name]' %>
 	<br>
 	<%= label_tag 'board[viewlist]', '白名單' %>
+	<%= button_tag '新增', type: 'button', onclick: 'newViewer()' %>
 	<div id="viewlist">
 	</div>
-	<%= button_tag '新增', type: 'button', onclick: 'newViewer()' %>
 	<br>
   <%= submit_tag 'save' %>
 <% end %>

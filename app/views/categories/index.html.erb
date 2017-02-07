@@ -1,6 +1,8 @@
 <% @categories.each do |c| %>
   <%= link_to c.name, category_path(c) %>
-  <%= link_to 'delete', c, method: :delete %>
+	<% if current_user.admin? %>
+		<%= link_to 'delete', c, method: :delete %>
+	<% end %>
   <br />
 <% end %>
 <%= link_to 'New', new_category_path %>

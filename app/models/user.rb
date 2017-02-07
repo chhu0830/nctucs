@@ -9,6 +9,18 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
+	def admin?
+		return self.role & 0b001 == 0b001
+	end
+
+	def leader?
+		return self.role & 0b010 == 0b010
+	end
+
+	def normal?
+		return self.role & 0b100 == 0b100
+	end
+
   def to_session_json
     return {
       :student_id => self.student_id,
@@ -34,6 +46,7 @@ class User < ApplicationRecord
         u.student_id = data['csid']
         u.email = "#{Devise.friendly_token[0,8]}@please.change.me"
         u.password = "Devise.friendly_token[0,20]"
+				u.role = 0b100
         u.save!
       end
       return {:auth=>true, :user=>user, :msg=>"登入成功"}
