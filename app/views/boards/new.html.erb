@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag    "boards", media: "all", "data-turbolinks-track": "reload" %>
 <%= form_tag boards_path(category_id: @category) do %>
   <%= hidden_field_tag 'board[category_id]', @category.id %>
 	<%= label_tag 'board[name]', '版名' %>
