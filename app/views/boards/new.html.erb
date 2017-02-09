@@ -4,7 +4,10 @@
   <%= text_field_tag 'board[name]' %>
 	<br>
 	<%= label_tag 'board[viewlist]', '白名單' %>
-	<%= button_tag '新增', type: 'button', onclick: 'newViewer()' %>
+	<button name="button" type="button" onclick="newViewer()" class="btn icon-btn btn-success">
+		<span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>
+		Add
+	</button>
 	<div id="viewlist">
 	</div>
 	<br>
