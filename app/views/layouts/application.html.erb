@@ -4,11 +4,30 @@
     <title>Nctucs</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbolinks-track": "reload" %>
   </head>
 
   <body>
-    <%= yield %>
+		<nav class="navbar navbar-light navbar-toggleable-md navbar-fixed-top" style="background-color: #e3f2fd;">
+			<a class="navbar-brand" href="/">CS UNION</a>
+			<ul class="nav navbar-nav">
+				<li class="header">
+					<%= link_to "看板", categories_path %>
+				</li>
+			</ul>
+			<div class="navbar-right">
+				<% if !current_user %>
+					<%= form_tag user_CS_omniauth_callback_path, class: "form-inline" do %>
+						<%= text_field_tag "id", "", placeholder: "account", class: "form-control" %>
+						<%= password_field_tag "pw", "", placeholder: "password", class: "form-control" %>
+						<%= submit_tag "登入", class: "btn btn-primary" %>
+					<% end %>
+				<% else %>
+					<%= link_to "登出", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+				<% end %>
+			</div>
+		</nav>
+		<%= yield %>
   </body>
 </html>
