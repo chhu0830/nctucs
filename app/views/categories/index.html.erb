@@ -1,9 +1,103 @@
-<% @categories.each do |c| %>
-  <%= link_to c.name, category_path(c) %>
-	<%= c.user.try(:name) %>
-	<% if current_user == c.user or current_user.admin? %>
-		<%= link_to 'delete', c, method: :delete, data: {confirm: "Are you sure?"} %>
-	<% end %>
-  <br />
-<% end %>
-<%= link_to 'New', new_category_path %>
+<%= stylesheet_link_tag "categories", media: "all", "data-turbolinks-track": "reload" %>
+<%= javascript_include_tag "categories", "data-turbolinks-track": "none" %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<div class="panel panel-primary"> 
+				<div class="panel-heading clickable">
+					<h3 class="panel-title">
+						系學會
+					</h3>
+					<span class="pull-right "><i class="glyphicon glyphicon-minus"></i></span>
+				</div>
+				<div class="panel-body">
+					<% @csunions.each do |c| %>
+						<%= link_to c.name, category_path(c) %>
+						<%= c.user.try(:name) %>
+						<% if current_user == c.user or current_user.admin? %>
+							<%= link_to 'delete', c, method: :delete, data: {confirm: "Are you sure?"} %>
+						<% end %>
+						<br />
+					<% end %>
+				</div>
+			</div>
+			<div class="panel panel-info"> 
+				<div class="panel-heading clickable">
+					<h3 class="panel-title">
+						資工營
+					</h3>
+					<span class="pull-right "><i class="glyphicon glyphicon-minus"></i></span>
+				</div>
+				<div class="panel-body">
+					<% @cscamps.each do |c| %>
+						<%= link_to c.name, category_path(c) %>
+						<%= c.user.try(:name) %>
+						<% if current_user == c.user or current_user.admin? %>
+							<%= link_to 'delete', c, method: :delete, data: {confirm: "Are you sure?"} %>
+						<% end %>
+						<br />
+					<% end %>
+				</div>
+			</div>
+			<div class="panel panel-success"> 
+				<div class="panel-heading clickable">
+					<h3 class="panel-title">
+						系露營
+					</h3>
+					<span class="pull-right "><i class="glyphicon glyphicon-minus"></i></span>
+				</div>
+				<div class="panel-body">
+					<% @csolds.each do |c| %>
+						<%= link_to c.name, category_path(c) %>
+						<%= c.user.try(:name) %>
+						<% if current_user == c.user or current_user.admin? %>
+							<%= link_to 'delete', c, method: :delete, data: {confirm: "Are you sure?"} %>
+						<% end %>
+						<br />
+					<% end %>
+				</div>
+			</div>
+			<div class="panel panel-warning"> 
+				<div class="panel-heading clickable">
+					<h3 class="panel-title">
+						迎新宿營
+					</h3>
+					<span class="pull-right "><i class="glyphicon glyphicon-minus"></i></span>
+				</div>
+				<div class="panel-body">
+					<% @csnews.each do |c| %>
+						<%= link_to c.name, category_path(c) %>
+						<%= c.user.try(:name) %>
+						<% if current_user == c.user or current_user.admin? %>
+							<%= link_to 'delete', c, method: :delete, data: {confirm: "Are you sure?"} %>
+						<% end %>
+						<br />
+					<% end %>
+				</div>
+			</div>
+			<div class="panel panel-danger"> 
+				<div class="panel-heading clickable">
+					<h3 class="panel-title">
+						其他
+					</h3>
+					<span class="pull-right "><i class="glyphicon glyphicon-minus"></i></span>
+				</div>
+				<div class="panel-body">
+					<% @others.each do |c| %>
+						<%= link_to c.name, category_path(c) %>
+						<%= c.user.try(:name) %>
+						<% if current_user == c.user or current_user.admin? %>
+							<%= link_to 'delete', c, method: :delete, data: {confirm: "Are you sure?"} %>
+						<% end %>
+						<br />
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div> <!-- row -->
+	<a href="/categories/new" class="btn icon-btn btn-success">
+		<span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>
+		Add
+	</a>
+</div> <!-- .container -->
+

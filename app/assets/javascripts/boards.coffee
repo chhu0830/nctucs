@@ -6,5 +6,5 @@
 viewerNum = 0
 
 @newViewer = ->
-	$('#viewlist').append('<input type="text" name="board[viewlist][' + viewerNum++ + ']"><br>')
+	$('#viewlist').append('<input type="text" name="board[viewlist][' + viewerNum++ + ']" class="form-control"><br>')
 	return

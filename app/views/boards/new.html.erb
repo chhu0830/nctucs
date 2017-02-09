@@ -1,16 +1,38 @@
 <%= stylesheet_link_tag    "boards", media: "all", "data-turbolinks-track": "reload" %>
-<%= form_tag boards_path(category_id: @category) do %>
-  <%= hidden_field_tag 'board[category_id]', @category.id %>
-	<%= label_tag 'board[name]', '版名' %>
-  <%= text_field_tag 'board[name]' %>
-	<br>
-	<%= label_tag 'board[viewlist]', '白名單' %>
-	<button name="button" type="button" onclick="newViewer()" class="btn icon-btn btn-success">
-		<span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>
-		Add
-	</button>
-	<div id="viewlist">
+<%= javascript_include_tag "boards", "data-turbolinks-track": "none" %>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<%= form_tag boards_path(category_id: @category), class: "form-horizontal" do %>
+				<legend>New Board</legend>
+				<%= hidden_field_tag 'board[category_id]', @category.id %>
+				<div class="form-group">
+					<label class="col-sm-3 control-label" style="text-align:left;">board name</label>
+					<div class="col-sm-9">
+						<%= text_field_tag 'board[name]', "", placeholder: "活動組", class: "form-control" %>
+					</div>
+				</div> <!-- .form-group -->
+				<div class="form-group">
+					<label class="col-sm-3 control-label" style="text-align:left;">list</label>
+					<div class="col-sm-9">
+						<button name="button" type="button" onclick="newViewer()" class="btn icon-btn btn-success">
+							<span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>
+							Add
+						</button>
+						<div id="viewlist">
+						</div>
+					</div>
+				</div> <!-- .form-group -->
+				<div class="form-group">
+					<div class="col-sm-offset-4 col-sm-8">
+						<div class="pull-right">
+							<%= link_to 'cancel', category_path(@category), class: "btn btn-default" %>
+							<%= submit_tag 'save', class: "btn btn-primary" %>
+						</div>
+					</div>
+				</div> <!-- .form-group -->
+			<% end %>
+		</div>
 	</div>
-	<br>
-  <%= submit_tag 'save' %>
-<% end %>
+</div>
+
